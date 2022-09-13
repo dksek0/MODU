@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- content: 페이지 설명 -->
+<meta name="description" content="모두 플랫폼은 국립중앙박물관과 13개의 소속 박물관의 교육 콘텐츠를 탐구하고, 배워보고, 나눌 수 있는 공간입니다. 박물관 교육 프로그램 신청, 교육 콘텐츠 검색, 퀴즈와 의견 나눔 교육통합플랫폼 모두 MODU">
+<!-- og property -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="">
+<meta property="og:title" content="">
+<meta property="og:url" content="">
+<meta property="og:description" content="모두 플랫폼은 국립중앙박물관과 13개의 소속 박물관의 교육 콘텐츠를 탐구하고, 배워보고, 나눌 수 있는 공간입니다. 박물관 교육 프로그램 신청, 교육 콘텐츠 검색, 퀴즈와 의견 나눔 교육통합플랫폼 모두 MODU">
+<meta property="og:image" content="">
+<meta property="og:image:height" content="">
+<meta property="og:image:width" content="">
+<title>국립중앙박물관 교육플랫폼 - 모두</title>
+<link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="license" href="author.php" hreflang="ko">
+<!-- href: 현재 페이지 url -->
+<link rel="canonical" href="#">
+<!-- href: 현재 페이지 국문버전 url -->
+<link rel="alternate" href="#" hreflang="ko">
+<!-- href: 현재 페이지 영문버전 url -->
+<link rel="alternate" href="#" hreflang="en">
+<!-- href: 현재 페이지의 디폴트 언어 버전 url -->
+<link rel="alternate" href="#" hreflang="x-default">
+<link rel="stylesheet" href="assets/css/swiper-min.css" />
+<link rel="stylesheet" href="assets/css/common.css" />
+<link rel="stylesheet" href="assets/css/page.css" />
+</head>
+<body>
+  
+  <!-- accessibility -->
+  <div class="skip_nav">
+    <a class="skip_nav_link" href="#container">본문 바로가기</a>
+  </div>
+  <!-- //accessibility -->
+
+
+  <div class="header"><!-- 메인 페이지일 경우 is-main 클래스 추가 -->
+
+  <!-- main_banner -->
+  <div class="main_banner">
+    <a href="#;" class="banner_link pc">
+      <img src="assets/images/banner_pc.png" alt="국립중앙박물관 거리두기 관람 알림 -마스크 착용 및 체온 측정 필수, -상설전시관 사전 예약없이 이용가능, -어린이박물관, VR체험(디지털 실감 영화관2)은 사전 예약 후 이용 가능. 예약 바로가기">
+      <div class="banner_input">
+        <span class="checkbox">
+          <input type="checkbox" name="checkbox" id="checkbox1">
+          <label for="checkbox1">
+            <span>오늘 하루 보지않기</span>
+          </label>
+        </span>
+        <button class="banner_close"><span class="is-blind">배너 닫기</span></button>
+      </div>
+    </a>
+    <a href="#;" class="banner_link mo">
+      <img src="assets/images/banner_mo.png" alt="국립중앙박물관 거리두기 관람 알림 -마스크 착용 및 체온 측정 필수, -상설전시관 사전 예약없이 이용가능, -어린이박물관, VR체험(디지털 실감 영화관2)은 사전 예약 후 이용 가능. 예약 바로가기">
+      <div class="banner_input">
+        <span class="checkbox">
+          <input type="checkbox" name="checkbox" id="checkbox2">
+          <label for="checkbox2">
+            <span>오늘 하루 보지않기</span>
+          </label>
+        </span>
+        <button class="banner_close"><span class="is-blind">배너 닫기</span></button>
+      </div>
+  </a>
+  </div>
+  <!-- /main_banner -->
+
+    <div class="header_inner">
+      <!-- mobile gnb button-->
+      <div class="header_m_gnb">
+        <button type="button" class="header_m_gnb_btn">
+          <span class="is-blind">메뉴</span>
+        </button>
+      </div>
+      <!-- //mobile gnb button-->
+      <!-- mobile gnb list -->
+      <div class="m_gnb">
+        <div class="m_gnb_inner">
+          <div class="m_gnb_top">
+            <button type="button" class="m_gnb_close_btn">닫기</button>
+          </div>
+          <div class="m_gnb_body">
+            <ul class="m_menu_list">
+              <li class="m_menu_item">
+                <a href="#" class="m_menu_link is-active">탐구해요</a>
+              </li>
+              <li class="m_menu_item">
+                <a href="#" class="m_menu_link">배워봐요</a>
+              </li>
+              <li class="m_menu_item">
+                <a href="#" class="m_menu_link">함께해요</a>
+              </li>
+              <li class="m_menu_item">
+                <a href="#" class="m_menu_link">모두소개</a>
+              </li>
+              <li class="m_menu_item">
+                <a href="#" class="m_menu_link">나의 교육</a>
+              </li>
+            </ul>
+      
+            <ul class="m_gnb_list">
+              <!-- 로그아웃 상태일 경우 -->
+              <li class="m_gnb_item">
+                <a href="#" class="m_gnb_link">로그인</a>
+              </li>
+              <li class="m_gnb_item">
+                <a href="#" class="m_gnb_link">회원가입</a>
+              </li>
+              <!-- 로그인 상태일 경우 -->
+              <!-- <li class="m_gnb_item">
+                <a href="#" class="m_gnb_link">로그아웃</a>
+              </li> -->
+            </ul>
+            
+            <ul class="m_gnb_list">
+              <li class="m_gnb_item">
+                <a href="#" class="m_gnb_link">English</a>
+              </li>
+              <!-- <li class="m_gnb_item">
+                <a href="#" class="m_gnb_link">한국어</a>
+              </li> -->
+            </ul>
+          </div>
+          <div class="m_gnb_footer">
+            <div class="m_gnb_footer_txt">© National Museum of Korea.</div>
+          </div>
+        </div>
+      </div>
+      <!-- //mobile gnb list -->
+
+      <!-- logo -->
+      <h1 class="header_logo">
+        <a href="#" class="header_logo_link">
+          <span class="is-blind">국립중앙박물관 통합 교육 플랫폼 모두</span>
+        </a>
+      </h1>
+      <!-- gnb -->
+      <ul class="header_gnb">
+        <li class="header_gnb_item">
+          <a href="#" class="header_gnb_link is-active">탐구해요</a>
+        </li>
+        <li class="header_gnb_item">
+          <a href="#" class="header_gnb_link">배워봐요</a>
+        </li>
+        <li class="header_gnb_item">
+          <a href="#" class="header_gnb_link">함께해요</a>
+        </li>
+        <li class="header_gnb_item">
+          <a href="#" class="header_gnb_link">모두소개</a>
+        </li>
+      </ul>
+      <!-- util -->
+      <div class="header_util">
+        <!-- search -->
+        <div class="header_util_item header_search">
+          <button type="button" class="header_search_btn">
+            <span class="is-blind">통합검색</span>
+          </button>
+          <!-- search bar -->
+          <div class="searchbar">
+            <div class="searchbar_inner">
+              <div class="searchbar_search">
+                <span class="searchbar_search_btn">
+                  <span class="is-blind">통합검색</span>
+                </span>
+                <input type="text" class="searchbar_ip" placeholder="키워드를 검색하거나 시대, 사람, 장소를 입력해보세요">
+                <!-- search helper -->
+                <div class="searchbar_helper">
+                  <div class="searchbar_helper_inner">
+                    <div class="searchbar_helper_cont">
+                      <!-- 연관 검색어 -->
+                      <div class="searchbar_helper_section">
+                        <ul class="searchbar_helper_list">
+                          <li class="searchbar_helper_item">
+                            <a href="#" class="searchbar_helper_link">
+                              <span class="searchbar_helper_highlight">백제</span>금동대향로
+                            </a>
+                          </li>
+                          <li class="searchbar_helper_item">
+                            <a href="#" class="searchbar_helper_link">
+                              <span class="searchbar_helper_highlight">백제</span>금동
+                            </a>
+                          </li>
+                          <li class="searchbar_helper_item">
+                            <a href="#" class="searchbar_helper_link">
+                              <span class="searchbar_helper_highlight">백제</span> 멸망
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <!-- //연관 검색어 -->
+                      <!-- 최근 검색어 -->
+                      <div class="searchbar_helper_section">
+                        <div class="searchbar_helper_top">
+                          <strong class="searchbar_helper_tit">최근 검색어</strong>
+                          <button type="button" class="searchbar_helper_delete_all">전체삭제</button>
+                        </div>
+                        <ul class="searchbar_helper_list helper_recent">
+                          <li class="searchbar_helper_item">
+                            <a href="#" class="searchbar_helper_link">백제금동대향로</a>
+                            <button type="button" class="searchbar_helper_delete">
+                              <span class="is-blind">검색어 삭제</span>
+                            </button>
+                          </li>
+                          <li class="searchbar_helper_item">
+                            <a href="#" class="searchbar_helper_link">백제금동</a>
+                            <button type="button" class="searchbar_helper_delete">
+                              <span class="is-blind">검색어 삭제</span>
+                            </button>
+                          </li>
+                          <li class="searchbar_helper_item">
+                            <a href="#" class="searchbar_helper_link">신라</a>
+                            <button type="button" class="searchbar_helper_delete">
+                              <span class="is-blind">검색어 삭제</span>
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                      <!-- //최근 검색어 -->
+                      <!-- 인기 검색어 -->
+                      <div class="searchbar_helper_recommend">
+                        <strong class="searchbar_recommend_tit">인기 검색어</strong>
+                        <ul class="searchbar_helper_list">
+                          <li class="searchbar_helper_item">
+                            <a href="#" class="searchbar_recommend_tag">백제금동대향로</a>
+                          </li>
+                          <li class="searchbar_helper_item">
+                            <a href="#" class="searchbar_recommend_tag">백제</a>
+                          </li>
+                          <li class="searchbar_helper_item">
+                            <a href="#" class="searchbar_recommend_tag">신라</a>
+                          </li>
+                          <li class="searchbar_helper_item">
+                            <a href="#" class="searchbar_recommend_tag">미술의 세계</a>
+                          </li>
+                          <li class="searchbar_helper_item">
+                            <a href="#" class="searchbar_recommend_tag">선사에서 고대까지</a>
+                          </li>
+                        </ul>
+                      </div>
+                      <!-- //인기 검색어 -->
+                    </div>
+                  </div>
+                </div>
+                <!-- //search helper -->
+                <div class="searchbar_btn_group">
+                  <button type="button" class="searchbar_btn searchbar_cancel_btn">취소</button>
+                  <button type="button" class="searchbar_btn searchbar_btn_search searchbar_func_btn">검색</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- search bar -->
+        </div>
+        <div class="header_util_item header_lang">
+          <button type="button" class="header_lang_btn">
+            <span class="is-blind">언어 선택</span>
+          </button>
+          <!-- popup: language popup -->
+          <div id="langPopup" class="popup popup_dropdown popup_dropdown_sm">
+            <div class="popup_dropdown_inner">
+              <ul class="popup_dropdown_list">
+                <li class="popup_dropdown_item">
+                  <a href="#" class="popup_dropdown_btn is-current">한국어</a>
+                </li>
+                <li class="popup_dropdown_item">
+                  <a href="#" class="popup_dropdown_btn">English</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- // popup: my edu popup -->
+        </div>
+        <!-- my education -->
+        <div class="header_util_item header_my">
+          <!-- 로그인 상태 -->
+          <!-- <button type="button" class="header_my_btn" style="background-image: url('assets/images/img-profile-04.png')">
+            <span class="is-blind">계정</span>
+          </button>-->
+          
+          <!-- 로그아웃 상태 -->
+          <button type="button" class="header_my_btn">
+            <span class="is-blind">로그인</span>
+          </button>
+
+          <!-- popup: my edu popup -->
+          <div class="popup popup_dropdown">
+            <div class="popup_dropdown_inner">
+              <!-- 로그인 상태일 경우 -->
+              <!-- <ul class="popup_dropdown_list">
+                <li class="popup_dropdown_item">
+                  <a href="#" class="popup_dropdown_btn">교육 내역</a>
+                </li>
+                <li class="popup_dropdown_item">
+                  <a href="#" class="popup_dropdown_btn">나의 좋아요</a>
+                </li>
+                <li class="popup_dropdown_item">
+                  <a href="#" class="popup_dropdown_btn">나의 활동</a>
+                </li>
+                <li class="popup_dropdown_item">
+                  <a href="#" class="popup_dropdown_btn">최근 본 콘텐츠</a>
+                </li>
+              </ul>
+              <ul class="popup_dropdown_list">
+                <li class="popup_dropdown_item">
+                  <a href="#" class="popup_dropdown_btn">로그아웃</a>
+                </li>
+              </ul> -->
+              
+              <!-- 로그아웃 상태일 경우 -->
+              <ul class="popup_dropdown_list">
+                <li class="popup_dropdown_item">
+                  <a href="#" class="popup_dropdown_btn">로그인</a>
+                </li>
+                <li class="popup_dropdown_item">
+                  <a href="#" class="popup_dropdown_btn">회원가입</a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+          <!-- // popup: my edu popup -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- loading -->
+  <div id="loading">
+    <div class="loading_box">
+      <div class="loading_anim"></div>
+      <div class="loading_text">Loading</div>
+    </div>
+  </div>
+  <!-- loading -->
+
+  <div id="container" class="main">
+    <div class="cursor">
+      <div class="cursor_bg"></div>
+    </div>
+    <div class="main_container">
+
+      <!-- main_hero -->
+      <div class="main_hero">
+        <div class="main_hero_cont">
+          <!-- hero:lottie animation -->
+          <div class="main_hero_anim heroAnim"></div>
+          <div class="main_hero_anim heroMobileAnim"></div>
+
+          <div class="main_hero_sub">
+            <p class="main_hero_sub_txt">
+              모두는 국립중앙박물관과 13개 소속 박물관의 교육 콘텐츠를 <br class="is-pc">
+              찾아보고, 배워보고, 나눌 수 있는 공간입니다.
+            </p>
+          </div>
+          <div class="hero_play">
+            <span class="hero_play_bar"></span>
+            <button type="button" class="hero_play_btn">
+              <span class="is-blind">재생</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- main_hero_notice -->
+        <div class="main_hero_notice">
+          <div class="hero_notice">
+            <div class="hero_notice_header">
+              <span class="hero_notice_header_txt">알림</span>
+            </div>
+            <div class="hero_notice_section">
+              <div class="heroNoticeSwiper swiper-container">
+                <ul class="hero_notice_list swiper-wrapper">
+                  <li class="hero_notice_item swiper-slide">
+                    <a href="#;" class="hero_notice_title">박물관 네트워크 펠로우십 "한국미술의 국제화" 국제포럼 안내</a>
+                    <span class="hero_notice_date">2021.11.19</span>
+                  </li>
+                  <li class="hero_notice_item swiper-slide">
+                    <a href="#;" class="hero_notice_title">2021년 국립중앙박물관 보존과학 심화연수 대상자 알림</a>
+                    <span class="hero_notice_date">2021.12.22</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="hero_notice_navi">
+                <div class="hero_notice_navi_btn hero_notice_navi_prev"></div>
+                <div class="hero_notice_navi_btn hero_notice_navi_next"></div>
+              </div>
+            </div>
+          </div>
+          <a href="#;" class="more">
+            <span>전체보기</span>
+          </a>
+        </div>
+      </div>
+      <!-- //main_hero -->
+      
+      <div class="main_guide">
+        <div class="inner">
+
+          <div class="main_guide_title">
+            모두는<br class="is-mobile"> 3가지 가이드를 토대로<br>
+            나에게 맞는 교육을 즐길 수 있습니다. 
+          </div>
+          
+          <div class="main_guide_con">
+            <div class="main_guide_list guideSwiper">
+              <div class="swiper-wrapper">
+                <a href="#;" class="main_guide_item swiper-slide">
+                  <div class="main_guide_lottie_mo is-mobile">
+                    <div class="main_guide_anim_mo"></div>
+                  </div>
+                  <div class="guide_title">탐구해요</div>
+                  <div class="guide_desc">
+                    궁금한 박물관 자료를 테마에 따라<br class="is-pc">
+                    검색할 수 있습니다.
+                  </div>
+                  <div class="guide_link is-pc"><span>탐구해요 바로가기</span></div>
+                </a>
+                <a href="#;" class="main_guide_item swiper-slide">
+                  <div class="main_guide_lottie_mo is-mobile">
+                    <div class="main_guide_anim_mo"></div>
+                  </div>
+                  <div class="guide_title">배워봐요</div>
+                  <div class="guide_desc">
+                    박물관에서 진행하는 다양한 교육 프로그램에<br class="is-pc">
+                    참여할 수 있습니다.
+                  </div>
+                  <div class="guide_link is-pc"><span>배워봐요 바로가기</span></div>
+                </a>
+                <a href="#;" class="main_guide_item swiper-slide">
+                  <div class="main_guide_lottie_mo is-mobile">
+                    <div class="main_guide_anim_mo"></div>
+                  </div>
+                  <div class="guide_title">함께해요</div>
+                  <div class="guide_desc">
+                    재미있는 퀴즈와 의견 표현에 참여하고,<br class="is-pc">
+                    다양한 이벤트를 경험할 수 있습니다.
+                  </div>
+                  <div class="guide_link is-pc"><span>함께해요 바로가기</span></div>
+                </a>
+              </div>
+            </div>
+            <!-- 우측 애니메이션 영역 -->
+            <div class="main_guide_thumb is-pc">
+              <div class="main_guide_lottie">
+                <div class="main_guide_anim"></div>
+              </div>
+              <div class="main_guide_lottie">
+                <div class="main_guide_anim"></div>
+              </div>
+              <div class="main_guide_lottie">
+                <div class="main_guide_anim"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- main_explore -->
+      <div class="main_explore">
+        <div class="inner">
+          <div class="main_explore_title">
+            <div class="sec_text">
+              <span class="sec_title">탐구해요</span>
+              <span class="sec_desc">궁금한 박물관 자료를 테마에 따라<br>검색할 수 있습니다.</span>
+            </div>
+          </div>
+          <div class="main_explore_cont exploreSwiper">
+            <ul class="main_explore_list">
+              <li class="main_explore_item explore_item_01">
+                <a href="#;" class="main_explore_link">다른나라 
+                  <span class="main_explore_link_right">이야기</span></a>
+              </li>
+              <li class="main_explore_item explore_item_02">
+                <a href="#;" class="main_explore_link">미술의 세계</a>
+              </li>
+              <li class="main_explore_item explore_item_03">
+                <a href="#;" class="main_explore_link">선사에서 <span class="main_explore_link_right">고대까지</span></a>
+              </li>
+              <li class="main_explore_item explore_item_04">
+                <a href="#;" class="main_explore_link">중세에서 <span class="main_explore_link_right">근세까지</span></a>
+              </li>
+            </ul>
+            <div class="exploreSwiper_pagination"></div>
+          </div>
+        </div>
+        <div class="main_explore_space"></div>
+      </div>
+      <!-- //main_explore -->
+
+      <!-- main_collect -->
+      <div class="main_collect">
+        <div class="sec_text">
+          <span class="sec_title">소장품</span>
+          <span class="sec_desc">다양한 주제로 엮은 소장품을 알고싶다면?</span>
+        </div>
+        <div class="collect_cat mainCollectSwiper">
+          <div class="swiper-wrapper">
+            <div class="collect_row swiper-slide">
+              <a href="#;" class="collect_link" target="_blank"><span class="collect_icon"><img src="assets/images/collection/main_col_1.png" alt=""></span>한국의 국보</a>
+              <a href="#;" class="collect_link" target="_blank"><span class="collect_icon"><img src="assets/images/collection/main_col_2.png" alt=""></span>한국의 보물</a>
+              <a href="#;" class="collect_link" target="_blank"><span class="collect_icon"><img src="assets/images/collection/main_col_3.png" alt=""></span>옛 그림에 나타난 꽃과 나비</a>
+              <a href="#;" class="collect_link" target="_blank"><span class="collect_icon"><img src="assets/images/collection/main_col_4.png" alt=""></span>조선시대 풍속화</a>
+              <a href="#;" class="collect_link" target="_blank"><span class="collect_icon"><img src="assets/images/collection/main_col_5.png" alt=""></span>고대의 무기</a>
+            </div>
+            <div class="collect_row swiper-slide">
+              <a href="#;" class="collect_link" target="_blank"><span class="collect_icon"><img src="assets/images/collection/main_col_6.png" alt=""></span>한국의 등화구</a>
+              <a href="#;" class="collect_link" target="_blank"><span class="collect_icon"><img src="assets/images/collection/main_col_7.png" alt=""></span>조선시대 초상화</a>
+              <a href="#;" class="collect_link" target="_blank"><span class="collect_icon"><img src="assets/images/collection/main_col_8.png" alt=""></span>우리나라의 옛 지도</a>
+              <a href="#;" class="collect_link" target="_blank"><span class="collect_icon"><img src="assets/images/collection/main_col_9.png" alt=""></span>상상의 동물</a>
+              <a href="#;" class="collect_link" target="_blank"><span class="collect_icon"><img src="assets/images/collection/main_col_10.png" alt=""></span>조선시대 궁중복식</a>
+            </div>
+            <div class="collect_row swiper-slide">
+              <a href="#;" class="collect_link" target="_blank"><span class="collect_icon"><img src="assets/images/collection/main_col_11.png" alt=""></span>조선시대 선비들의 문방구</a>
+              <a href="#;" class="collect_link" target="_blank"><span class="collect_icon"><img src="assets/images/collection/main_col_12.png" alt=""></span>용맹한 호랑이</a>
+              <a href="#;" class="collect_link" target="_blank"><span class="collect_icon"><img src="assets/images/collection/main_col_13.png" alt=""></span>바다의 빛 나전</a>
+              <a href="#;" class="collect_link" target="_blank"><span class="collect_icon"><img src="assets/images/collection/main_col_14.png" alt=""></span>세계의 놀이문화</a>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+      <!-- //main_collect -->
+
+      <!-- main_learn -->
+      <div class="main_learn">
+        <div class="sec_scroll">
+          <div class="sec_text">
+            <span class="sec_title">배워봐요</span>
+            <span class="sec_desc">박물관에서 진행하는 다양한 <br>교육 프로그램에 참여할 수 있습니다.</span>
+          </div>
+          <span class="bg_text">배워봐요</span>
+          <div class="scroll_card learnCardSwiper">
+            <div class="scroll_box swiper-wrapper">
+              <div class="scroll_card_box swiper-slide">
+                <a href="#;" class="scroll_card_item">
+                  <div class="txt">
+                    <span>어린이</span>
+                    <span>6~13세</span>
+                  </div>
+                  <div class="ani"></div>
+                </a>
+              </div>
+              <div class="scroll_card_box swiper-slide">
+                <a href="#;" class="scroll_card_item">
+                  <div class="txt">
+                    <span>청소년</span>
+                    <span>14~19세</span>
+                  </div>
+                  <div class="ani"></div>
+                </a>
+              </div>
+              <div class="scroll_card_box swiper-slide">
+                <a href="#;" class="scroll_card_item">
+                  <div class="txt">
+                    <span>성인</span>
+                  </div>
+                  <div class="ani"></div>
+                </a>
+              </div>
+              <div class="scroll_card_box swiper-slide">
+                <a href="#;" class="scroll_card_item">
+                  <div class="txt">
+                    <span>전문인력</span>
+                  </div>
+                  <div class="ani"></div>
+                </a>
+              </div>
+              <div class="scroll_card_box swiper-slide">
+                <a href="#;" class="scroll_card_item">
+                  <div class="txt">
+                    <span>외국인</span>
+                  </div>
+                  <div class="ani"></div>
+                </a>
+              </div>
+              <div class="scroll_card_box swiper-slide">
+                <a href="#;" class="scroll_card_item">
+                  <div class="txt">
+                    <span>문화취약</span>
+                  </div>
+                  <div class="ani"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- //main_learn -->
+
+      <!-- main_together -->
+      <div class="main_together">
+        <div class="inner">
+
+          <div class="main_together_top">
+            <div class="title">함께해요</div>
+            <div class="desc">재미있는 퀴즈와 의견 표현에 참여하고,<br>다양한 이벤트를 경험할 수 있습니다.</div>
+          </div>
+
+          <div class="main_together_con">
+            <div class="main_together_list togetherSwiper">
+              <div class="swiper-wrapper">
+                <a href="#;" class="main_together_item swiper-slide">
+                  <div class="main_together_img">
+                    <img src="assets/images/thumbnail/img-thumb-together1.png" alt="">
+                  </div>
+                  <div class="main_together_text">
+                    <div class="main_together_text_wrap">
+                      <div class="main_together_title">모두의 퀴즈</div>
+                      <div class="main_together_desc">
+                        테마에 따른 다양한 퀴즈를 풀어볼 수 있습니다.<br>재미있는 퀴즈를 통해서 학습한 내용을 확인해보세요!
+                      </div>
+                      <div class="main_together_link is-pc"><span>퀴즈 더보기</span></div>
+                    </div>
+                  </div>
+                </a>
+                <a href="#;" class="main_together_item swiper-slide">
+                  <div class="main_together_img is-right">
+                    <img src="assets/images/thumbnail/img-thumb-together2.png" alt="">
+                  </div>
+                  <div class="main_together_text is-left">
+                    <div class="main_together_text_wrap">
+                      <div class="main_together_title">모두의 의견</div>
+                      <div class="main_together_desc">교육플랫폼 모두에서 여러분의 다양한 의견을 기다립니다.<br> 더 멋지고 재미있는 콘텐츠들이 모두에 생길 수 있도록 의견을 들려주세요!
+                      </div>
+                      <div class="main_together_link is-pc"><span>의견 더보기</span></div>
+                    </div>
+                  </div>
+                </a>
+                <a href="#;" class="main_together_item swiper-slide">
+                  <div class="main_together_img">
+                    <img src="assets/images/thumbnail/img-thumb-together3.png" alt="">
+                  </div>
+                  <div class="main_together_text">
+                    <div class="main_together_text_wrap">
+                      <div class="main_together_title">이벤트</div>
+                      <div class="main_together_desc">
+                        박물관에서 진행하는 다양한 행사 및 이벤트에<br> 참여해보세요!
+                      </div>
+                      <div class="main_together_link is-pc"><span>이벤트 더보기</span></div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- //main_together -->
+
+    </div>
+  </div>
+
+  <div class="top_button">
+    <button type="button" class="top_button_link">
+      <img src="assets/images/icon/ico-top-button.png" alt="맨 위로">
+    </button>
+  </div>
+  
+  <div class="footer">
+    <div class="footer_section">
+      <div class="footer_site">
+        <div class="footer_site_group">
+          <button type="button" class="footer_site_btn">관련사이트 바로가기</button>
+          <div class="footer_site_list">
+            <ul class="footer_site_list_inner custom_scroll">
+              <li class="footer_site_item">
+                <a href="https://www.museum.go.kr/site/main/home" class="footer_site_link" target="_blank">국립중앙박물관</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="https://www.museum.go.kr/site/child/home" class="footer_site_link" target="_blank">어린이박물관</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="http://www.emuseum.go.kr/main" class="footer_site_link" target="_blank">e뮤지엄</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="https://musedu.museum.go.kr/nlcy/main.do" class="footer_site_link" target="_blank">이러닝</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer_site_group">
+          <button type="button" class="footer_site_btn">소속박물관 바로가기</button>
+          <div class="footer_site_list">
+            <ul class="footer_site_list_inner custom_scroll">
+              <li class="footer_site_item">
+                <a href="http://gyeongju.museum.go.kr/" class="footer_site_link" target="_blank">국립경주박물관</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="https://gwangju.museum.go.kr/" class="footer_site_link" target="_blank">국립광주박물관</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="http://jeonju.museum.go.kr/" class="footer_site_link" target="_blank">국립전주박물관</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="http://daegu.museum.go.kr/" class="footer_site_link" target="_blank">국립대구박물관</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="http://buyeo.museum.go.kr/" class="footer_site_link" target="_blank">국립부여박물관</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="http://gongju.museum.go.kr/" class="footer_site_link" target="_blank">국립공주박물관</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="http://jinju.museum.go.kr/" class="footer_site_link" target="_blank">국립진주박물관</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="http://cheongju.museum.go.kr/" class="footer_site_link" target="_blank">국립청주박물관</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="http://gimhae.museum.go.kr/" class="footer_site_link" target="_blank">국립김해박물관</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="http://jeju.museum.go.kr/" class="footer_site_link" target="_blank">국립제주박물관</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="http://chuncheon.museum.go.kr/" class="footer_site_link" target="_blank">국립춘천박물관</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="http://naju.museum.go.kr/" class="footer_site_link" target="_blank">국립나주박물관</a>
+              </li>
+              <li class="footer_site_item">
+                <a href="http://iksan.museum.go.kr/" class="footer_site_link" target="_blank">국립익산박물관</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <ul class="footer_menu_list">
+        <li class="footer_menu_item">
+          <a href="https://www.museum.go.kr/site/main/content/privacy_policy" class="footer_menu_link" target="_blank">개인정보처리방침</a>
+        </li>
+        <li class="footer_menu_item">
+          <a href="https://www.museum.go.kr/site/main/content/access_terms" class="footer_menu_link" target="_blank">이용약관</a>
+        </li>
+        <li class="footer_menu_item">
+          <a href="https://www.museum.go.kr/site/main/content/copyright_policy" class="footer_menu_link" target="_blank">저작권정책</a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer_section">
+      <div class="footer_info">
+        <ul class="footer_info_list">
+          <li class="footer_info_item">
+            <span class="footer_info_logo"></span>
+            <span class="footer_info_logo">
+              <img class="footer_logo_ico" src="assets/images/icon/ico-museum-logo.png" alt="국립중앙박물관 National Museum of Korea">
+              <!-- 영문 -->
+              <!-- <img class="footer_logo_ico" src="assets/images/icon/ico-museum-logo-en.png" alt="National Museum of Korea"> -->
+            </span>
+          </li>
+          <li class="footer_info_item">
+            <span class="footer_info_text">04383 서울시 용산구 서빙고로 137(용산동6가 168-6)</span>
+          </li>
+          <li class="footer_info_item">
+            <span class="footer_info_text">대표전화 02-2077-9000</span>
+          </li>
+        </ul>
+      </div>
+      <div class="footer_copyright">
+        <span class="footer_copyright_text">© National Museum of Korea.</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- js library -->
+  <script type="text/javascript" src="assets/lib/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="assets/lib/swiper-bundle.min.js"></script>
+  <script type="text/javascript" src="assets/lib/gsap.min.js"></script>
+  <script type="text/javascript" src="assets/lib/ScrollToPlugin.min.js"></script>
+  <script type="text/javascript" src="assets/lib/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script type="text/javascript" src="assets/lib/lottie.min.js"></script>
+  <!-- js init -->
+  <script type="text/javascript" src="assets/js/common.js"></script>
+  <script type="text/javascript" src="assets/js/page.js"></script>
+</body>
+</html>

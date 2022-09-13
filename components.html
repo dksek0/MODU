@@ -1,0 +1,2269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Components</title>
+<link rel="stylesheet" href="assets/css/swiper-bundle.css" />
+<link rel="stylesheet" href="assets/css/common.css" />
+<link rel="stylesheet" href="assets/css/datepicker.css" />
+<link rel="stylesheet" href="assets/css/page.css" />
+<style>
+  body {
+    display: block;
+  }
+
+  pre * {
+    font-size: 12px;
+  }
+
+  .Component_wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 100vh;
+  }
+
+  .Component_container {
+    flex: 1 1 auto;
+    width: 100%;
+    padding: 35px 45px 100px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .Component_container:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .ComponentBox {
+    margin-top: 70px;
+  }
+
+  .ComponentBox:first-child {
+    margin-top: 0;
+  }
+
+  .ComponentBoxTitle {
+    padding: 15px 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .ComponentBoxView {
+    border: solid 1px #dddddd;
+  }
+
+  .ComponentBoxView_content {
+    padding: 20px 20px;
+  }
+
+  .ComponentBoxView_content p {
+    /* font-size: 14px; */
+  }
+
+  .ComponentBoxView_footer {
+    padding: 10px 20px;
+    border-top: dashed 1px #dddddd;
+  }
+
+  .ComponentBoxView_link {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    color: #757575;
+  }
+
+  .ComponentBoxCode {
+    display: none;
+    position: relative;
+    padding: 10px 20px;
+    border: solid 1px #dddddd;
+    border-top: none;
+    font-size: 12px;
+  }
+
+  .is-view .ComponentBoxCode {
+    display: block;
+  }
+
+  .CopyCodeBtn {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    padding: 2px 4px 3px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: solid 1px #d9dadb;
+    background-color: #f1f1f1;
+    line-height: normal;
+  }
+
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    background: white;
+    color: black;
+  }
+
+  .hljs-comment,
+  .hljs-quote,
+  .hljs-variable {
+    color: #008000;
+  }
+
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-built_in,
+  .hljs-name,
+  .hljs-tag {
+    color: #00f;
+  }
+
+  .hljs-string,
+  .hljs-title,
+  .hljs-section,
+  .hljs-attribute,
+  .hljs-literal,
+  .hljs-template-tag,
+  .hljs-template-variable,
+  .hljs-type,
+  .hljs-addition {
+    color: #a31515;
+  }
+
+  .hljs-deletion,
+  .hljs-selector-attr,
+  .hljs-selector-pseudo,
+  .hljs-meta {
+    color: #2b91af;
+  }
+
+  .hljs-doctag {
+    color: #808080;
+  }
+
+  .hljs-attr {
+    color: #f00;
+  }
+
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-link {
+    color: #00b0e8;
+  }
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+  <div class="Component_wrapper">
+    <div class="Component_container">
+      
+      <!-- template -->
+      <!-- <div class="ComponentBox">
+
+        <h2 class="ComponentBoxTitle">component title</h2>
+
+        <div class="ComponentBoxView">
+
+          <div class="ComponentBoxView_content">
+            // 코드 입력
+          </div>
+
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div> -->
+      <!-- .template -->
+
+
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Filter</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div class="filter">
+              <div class="filter_wrap">
+                <div class="filter_value">
+                  <div class="filter_item_wrap">
+                    <!-- 옵션 열렸을 때 is-open 추가 / 옵션 선택되었을 때 is-selected 추가 -->
+                    <!-- 유형 필터의 경우 is-category 추가 -->
+                    <div class="filter_item is-category">
+                      <!-- 옵션 선택시 각 유형 관련 클래스 추가 -->
+                      <!-- 전체 : is-type / 동영상 : is-video / 활동지 : is-activity / 소장품 : is-collect / 연구자료 : is-data 추가 -->
+                      <button type="button" class="filter_label is-type">
+                        <span class="filter_label_text" data-value="유형">유형</span>
+                        <span class="is-blind">하위 내용 열기</span>
+                      </button>
+                      <div class="filter_option">
+                        <div class="filter_option_dim is-mobile"></div>
+                        <div class="filter_option_wrap">
+                          <div class="filter_option_title is-mobile">유형</div>
+                          <div class="inner">
+                            <ul>
+                              <!-- 활성화시 is-active 추가 -->
+                              <li><a href="#;" class="filter_option_link" data-value="is-type">전체</a></li>
+                              <li><a href="#;" class="filter_option_link" data-value="is-video">동영상</a></li>
+                              <li><a href="#;" class="filter_option_link" data-value="is-collect">소장품</a></li>
+                              <li><a href="#;" class="filter_option_link" data-value="is-activity">활동지</a></li>
+                              <li><a href="#;" class="filter_option_link" data-value="is-data">연구자료</a></li>
+                            </ul>
+                            <div class="filter_option_btn is-mobile">
+                              <button type="button" class="filter_option_close"><span class="is-blind">닫기</span></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 옵션 열렸을 때 is-open 추가 / 옵션 선택되었을 때 is-selected 추가 -->
+                    <div class="filter_item">
+                      <button type="button" class="filter_label is-theme">
+                        <span class="filter_label_text" data-value="테마">테마</span>
+                        <!-- 선택된 옵션 중 첫번째 옵션의 text + 체크된 옵션의 숫자 / 선택된 옵션이 없는 경우 설정한 data-value 값 노출-->
+                        <!-- <span class="filter_label_text" data-value="테마">선사에서 고대까지 +3</span> -->
+                        <span class="is-blind">하위 내용 열기</span>
+                      </button>
+                      <div class="filter_option">
+                        <div class="filter_option_dim is-mobile"></div>
+                        <div class="filter_option_wrap">
+                          <div class="filter_option_title is-mobile">테마</div>
+                          <div class="inner">
+                            <!-- 필터옵션 : 복수선택 -->
+                            <div class="filter_option_check">
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkbox1">
+                                <label for="checkbox1">
+                                  <span>선사에서 고대까지</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkbox2">
+                                <label for="checkbox2">
+                                  <span>중세에서 근세까지</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkbox3">
+                                <label for="checkbox3">
+                                  <span>다른나라 이야기</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkbox4">
+                                <label for="checkbox4">
+                                  <span>미술의 세계</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkbox5">
+                                <label for="checkbox5">
+                                  <span>기타</span>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="filter_option_bottom">
+                              <div class="filter_option_btn">
+                                <button type="button" class="filter_option_reset"><span class="is-blind">초기화</span></button>
+                                <button type="button" class="filter_option_apply">적용<span class="is-mobile">하기</span></button>
+                              </div>
+                              <button type="button" class="filter_option_close is-mobile"><span class="is-blind">닫기</span></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 옵션 열렸을 때 is-open 추가 / 옵션 선택되었을 때 is-selected 추가 -->
+                    <div class="filter_item">
+                      <button type="button" class="filter_label is-center">
+                        <span class="filter_label_text" data-value="박물관">박물관</span>
+                        <!-- 선택된 옵션 중 첫번째 옵션의 text + 체크된 옵션의 숫자 / 선택된 옵션이 없는 경우 설정한 data-value 값 노출-->
+                        <!-- <span class="filter_label_text" data-value="박물관">국립경주박물관 +1</span> -->
+                        <span class="is-blind">하위 내용 열기</span>
+                      </button>
+                      <div class="filter_option">
+                        <div class="filter_option_dim is-mobile"></div>
+                        <div class="filter_option_wrap">
+                          <div class="filter_option_title is-mobile">박물관</div>
+                          <div class="inner">
+                            <!-- 필터옵션 : 복수선택 -->
+                            <div class="filter_option_check">
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter1">
+                                <label for="checkboxCenter1">
+                                  <span>국립중앙박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter2">
+                                <label for="checkboxCenter2">
+                                  <span>국립경주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter3">
+                                <label for="checkboxCenter3">
+                                  <span>국립전주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter4">
+                                <label for="checkboxCenter4">
+                                  <span>국립광주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter5">
+                                <label for="checkboxCenter5">
+                                  <span>국립대구박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter6">
+                                <label for="checkboxCenter6">
+                                  <span>국립부여박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter7">
+                                <label for="checkboxCenter7">
+                                  <span>국립공주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter8">
+                                <label for="checkboxCenter8">
+                                  <span>국립진주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter9">
+                                <label for="checkboxCenter9">
+                                  <span>국립청주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter10">
+                                <label for="checkboxCenter10">
+                                  <span>국립김해박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter11">
+                                <label for="checkboxCenter11">
+                                  <span>국립제주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter12">
+                                <label for="checkboxCenter12">
+                                  <span>국립춘천박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter13">
+                                <label for="checkboxCenter13">
+                                  <span>국립나주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter14">
+                                <label for="checkboxCenter14">
+                                  <span>국립익산박물관</span>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="filter_option_bottom">
+                              <div class="filter_option_btn">
+                                <button type="button" class="filter_option_reset"><span class="is-blind">초기화</span></button>
+                                <button type="button" class="filter_option_apply">적용<span class="is-mobile">하기</span></button>
+                              </div>
+                              <button type="button" class="filter_option_close is-mobile"><span class="is-blind">닫기</span></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="filter_search is-pc">
+                    <div class="filter_search_btn">
+                      <span class="is-blind">검색</span>
+                    </div>
+                    <input type="text" class="filter_search_ip" placeholder="오늘은 무엇을 알아볼까요?">
+                  </div>
+                </div>
+                <div class="filter_apply is-pc">
+                  <button type="button" class="filter_submit">검색</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Filter - datepicker</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div class="filter">
+              <div class="filter_wrap">
+                <div class="filter_value">
+                  <div class="filter_item_wrap">
+                    <!-- 기간 필터는 has-datepicker 추가 -->
+                    <div class="filter_item has-datepicker">
+                      <div class="filter_label is-period">
+                        <input type="text" name="daterange" placeholder="YY.MM.DD ~ YY.MM.DD" value="기간" data-value="기간" class="filter_date">
+                        <span class="is-blind">YY.MM.DD ~ YY.MM.DD</span>
+                      </div>
+                    </div>
+                    <!-- 옵션 열렸을 때 is-open 추가 / 옵션 선택되었을 때 is-selected 추가 -->
+                    <div class="filter_item">
+                      <button type="button" class="filter_label is-age">
+                        <span class="filter_label_text" data-value="대상">대상</span>
+                        <!-- 선택된 옵션 중 첫번째 옵션의 text + 체크된 옵션의 숫자 / 선택된 옵션이 없는 경우 설정한 data-value 값 노출-->
+                        <!-- <span class="filter_label_text" data-value="대상">가족 +3</span> -->
+                        <span class="is-blind">하위 내용 열기</span>
+                      </button>
+                      <div class="filter_option">
+                        <div class="filter_option_dim is-mobile"></div>
+                        <div class="filter_option_wrap">
+                          <div class="filter_option_title is-mobile">대상</div>
+                          <div class="inner">
+                            <!-- 필터옵션 : 복수선택 -->
+                            <div class="filter_option_check">
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxAge1">
+                                <label for="checkboxAge1">
+                                  <span>어린이 (6세~13세)</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxAge2">
+                                <label for="checkboxAge2">
+                                  <span>청소년 (14세~19세)</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxAge3">
+                                <label for="checkboxAge3">
+                                  <span>가족</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxAge4">
+                                <label for="checkboxAge4">
+                                  <span>성인</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxAge5">
+                                <label for="checkboxAge5">
+                                  <span>전문인력</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxAge6">
+                                <label for="checkboxAge6">
+                                  <span>외국인</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxAge7">
+                                <label for="checkboxAge7">
+                                  <span>문화취약</span>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="filter_option_bottom">
+                              <div class="filter_option_btn">
+                                <button type="button" class="filter_option_reset"><span class="is-blind">초기화</span></button>
+                                <button type="button" class="filter_option_apply">적용<span class="is-mobile">하기</span></button>
+                              </div>
+                              <button type="button" class="filter_option_close is-mobile"><span class="is-blind">닫기</span></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 옵션 열렸을 때 is-open 추가 / 옵션 선택되었을 때 is-selected 추가 -->
+                    <div class="filter_item">
+                      <button type="button" class="filter_label is-center">
+                        <span class="filter_label_text" data-value="박물관">박물관</span>
+                        <!-- 선택된 옵션 중 첫번째 옵션의 text + 체크된 옵션의 숫자 / 선택된 옵션이 없는 경우 설정한 data-value 값 노출-->
+                        <!-- <span class="filter_label_text" data-value="박물관">국립경주박물관 +1</span> -->
+                        <span class="is-blind">하위 내용 열기</span>
+                      </button>
+                      <div class="filter_option">
+                        <div class="filter_option_dim is-mobile"></div>
+                        <div class="filter_option_wrap">
+                          <div class="filter_option_title is-mobile">박물관</div>
+                          <div class="inner">
+                            <!-- 필터옵션 : 복수선택 -->
+                            <div class="filter_option_check">
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter1">
+                                <label for="checkboxCenter1">
+                                  <span>국립중앙박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter2">
+                                <label for="checkboxCenter2">
+                                  <span>국립경주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter3">
+                                <label for="checkboxCenter3">
+                                  <span>국립전주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter4">
+                                <label for="checkboxCenter4">
+                                  <span>국립광주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter5">
+                                <label for="checkboxCenter5">
+                                  <span>국립대구박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter6">
+                                <label for="checkboxCenter6">
+                                  <span>국립부여박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter7">
+                                <label for="checkboxCenter7">
+                                  <span>국립공주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter8">
+                                <label for="checkboxCenter8">
+                                  <span>국립진주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter9">
+                                <label for="checkboxCenter9">
+                                  <span>국립청주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter10">
+                                <label for="checkboxCenter10">
+                                  <span>국립김해박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter11">
+                                <label for="checkboxCenter11">
+                                  <span>국립제주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter12">
+                                <label for="checkboxCenter12">
+                                  <span>국립춘천박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter13">
+                                <label for="checkboxCenter13">
+                                  <span>국립나주박물관</span>
+                                </label>
+                              </div>
+                              <div class="checkbox">
+                                <input type="checkbox" name="checkbox" id="checkboxCenter14">
+                                <label for="checkboxCenter14">
+                                  <span>국립익산박물관</span>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="filter_option_bottom">
+                              <div class="filter_option_btn">
+                                <button type="button" class="filter_option_reset"><span class="is-blind">초기화</span></button>
+                                <button type="button" class="filter_option_apply">적용<span class="is-mobile">하기</span></button>
+                              </div>
+                              <button type="button" class="filter_option_close is-mobile"><span class="is-blind">닫기</span></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="filter_search is-pc">
+                    <div class="filter_search_btn">
+                      <span class="is-blind">검색</span>
+                    </div>
+                    <input type="text" class="filter_search_ip" placeholder="오늘은 무엇을 알아볼까요?">
+                  </div>
+                </div>
+                <div class="filter_apply is-pc">
+                  <button type="button" class="filter_submit">검색</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Sort - type A</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div class="sort sort_type_a">
+              <div class="sort_left">
+                <div class="cort_count">총<span class="is-em">120</span>건</div>
+              </div>
+              <div class="sort_right">
+                <div class="sort_order">
+                  <a href="#;" class="sort_order_item is-active" title="선택됨">최신순</a>
+                  <a href="#;" class="sort_order_item">인기순</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Sort - type B</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div class="sort">
+              <div class="sort_left">
+                <div class="sort_category">
+                  <div class="sort_category_unit">
+                    <a href="#;" class="sort_category_item is-small sort_category_item_borderline is-active" title="선택됨">개인</a>
+                    <a href="#;" class="sort_category_item sort_category_item_borderline is-small">단체</a>
+                  </div>
+                  <div class="sort_category_unit">
+                    <a href="#;" class="sort_category_item is-small sort_category_item_borderline is-active" title="선택됨">온라인</a>
+                    <a href="#;" class="sort_category_item sort_category_item_borderline is-small">오프라인</a>
+                  </div>
+                </div>
+              </div>
+              <div class="sort_right">
+                <div class="sort_order">
+                  <a href="#;" class="sort_order_item is-active" title="선택됨">최신순</a>
+                  <a href="#;" class="sort_order_item">인기순</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Sort - type C</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div class="sort">
+              
+              <div class="sort_left m-sticky">
+                <div class="sort_category is-small sortSwiper ">
+                  <div class="sort_category_unit swiper-wrapper">
+                    <a href="#;" class="sort_category_item is-all swiper-slide is-active" title="선택됨">전체</a>
+                    <a href="#;" class="sort_category_item swiper-slide is-active" title="선택됨">선사에서 고대까지</a>
+                    <a href="#;" class="sort_category_item swiper-slide is-active" title="선택됨">중세에서 근대까지</a>
+                    <a href="#;" class="sort_category_item swiper-slide is-active" title="선택됨">다른나라 이야기</a>
+                    <a href="#;" class="sort_category_item swiper-slide is-active" title="선택됨">미술의 세계</a>
+                    <a href="#;" class="sort_category_item swiper-slide is-active" title="선택됨">기타</a>
+                  </div>
+                </div>
+              </div>
+              <div class="sort_right">
+                <div class="sort_order">
+                  <a href="#;" class="sort_order_item is-active" title="선택됨">최신순</a>
+                  <a href="#;" class="sort_order_item">인기순</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Card</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div class="card_wrap">
+              <!-- <ul>
+                <li> -->
+                  <a href="#;" class="card">
+                    <div class="thumb" style="background-image: url(assets/images/thumb-empty.png)">
+                      <span class="b_new">신규</span>
+                      <span class="time">00:00</span>
+                    </div>
+                    <div class="cont">
+                      <span class="title">타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀</span>
+                      <div class="cont_bot">
+                        <span class="writer">국립중앙박물관</span>
+                        <div class="info">
+                          <span class="view">4,020</span><button type="button" class="like is-active">200</button>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                <!-- </li>
+              </ul> -->
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code>
+            <div class="card_wrap">
+              <!-- <ul>
+                <li> -->
+                  <a href="#;" class="card">
+                    <div class="thumb" style="background-image: url(assets/images/thumb-empty.png)">
+                      <span class="b_new">신규</span>
+                      <span class="time">00:00</span>
+                    </div>
+                    <div class="cont">
+                      <span class="title">타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀</span>
+                      <div class="cont_bot">
+                        <span class="writer">국립중앙박물관</span>
+                        <div class="info">
+                          <span class="view">4,020</span><button type="button" class="like is-active">200</button>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                <!-- </li>
+              </ul> -->
+            </div>
+          </code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component: Search Bar -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Card - vertical</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div class="card_wrap">
+              <!-- <ul>
+                <li> -->
+                  <a href="#;" class="card">
+                    <div class="thumb long">
+                      <span class="thumb_vertical" style="background-image: url(assets/images/thumb-empty.png)"></span>
+                      <span class="b_new">신규</span>
+                    </div>
+                    <div class="cont">
+                      <span class="title">타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀</span>
+                      <div class="cont_bot">
+                        <span class="writer">국립중앙박물관</span>
+                        <div class="info">
+                          <span class="view">4,020</span><button type="button" class="like is-active">200</button>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                <!-- </li>
+              </ul> -->
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code>
+            <div class="card_wrap">
+              <!-- <ul>
+                <li> -->
+                  <a href="#;" class="card">
+                    <div class="thumb long">
+                      <span class="thumb_vertical" style="background-image: url(assets/images/thumb-empty.png)"></span>
+                      <span class="b_new">신규</span>
+                    </div>
+                    <div class="cont">
+                      <span class="title">타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀</span>
+                      <div class="cont_bot">
+                        <span class="writer">국립중앙박물관</span>
+                        <div class="info">
+                          <span class="view">4,020</span><button type="button" class="like is-active">200</button>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                <!-- </li>
+              </ul> -->
+            </div>
+          </code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Card - horizontal</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div class="card_wrap">
+              <!-- <ul>
+                <li> -->
+                  <a href="#;" class="card">
+                    <div class="thumb long">
+                      <span class="thumb_horizontal" style="background-image: url(assets/images/thumb-empty.png)"></span>
+                      <span class="b_new">신규</span>
+                    </div>
+                    <div class="cont">
+                      <span class="title">타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀</span>
+                      <div class="cont_bot">
+                        <span class="writer">국립중앙박물관</span>
+                        <div class="info">
+                          <span class="view">4,020</span><button type="button" class="like is-active">200</button>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                <!-- </li>
+              </ul> -->
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code>
+            <div class="card_wrap">
+              <!-- <ul>
+                <li> -->
+                  <a href="#;" class="card">
+                    <div class="thumb long">
+                      <span class="thumb_horizontal" style="background-image: url(assets/images/thumb-empty.png)"></span>
+                      <span class="b_new">신규</span>
+                    </div>
+                    <div class="cont">
+                      <span class="title">타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀</span>
+                      <div class="cont_bot">
+                        <span class="writer">국립중앙박물관</span>
+                        <div class="info">
+                          <span class="view">4,020</span><button type="button" class="like is-active">200</button>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                <!-- </li>
+              </ul> -->
+            </div>
+          </code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Card - multiple</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div class="card_wrap">
+              <!-- <ul>
+                <li> -->
+                  <a href="#;" class="card">
+                    <div class="thumb long multi">
+                      <span class="thumb_vertical" style="background-image: url(assets/images/thumb-empty.png)"></span>
+                      <span class="b_new">신규</span>
+                    </div>
+                    <div class="cont">
+                      <span class="title">타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀</span>
+                      <div class="cont_bot">
+                        <span class="writer">국립중앙박물관</span>
+                        <div class="info">
+                          <span class="view">4,020</span><button type="button" class="like is-active">200</button>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                <!-- </li>
+              </ul> -->
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code>
+            <div class="card_wrap">
+              <!-- <ul>
+                <li> -->
+                  <a href="#;" class="card">
+                    <div class="thumb long multi">
+                      <span class="thumb_vertical" style="background-image: url(assets/images/thumb-empty.png)"></span>
+                      <span class="b_new">신규</span>
+                    </div>
+                    <div class="cont">
+                      <span class="title">타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀</span>
+                      <div class="cont_bot">
+                        <span class="writer">국립중앙박물관</span>
+                        <div class="info">
+                          <span class="view">4,020</span><button type="button" class="like is-active">200</button>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                <!-- </li>
+              </ul> -->
+            </div>
+          </code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Card</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div class="card_wrap">
+              <!-- <ul>
+                <li> -->
+                  <a href="#;" class="card type02">
+                    <div class="thumb" style="background-image: url('assets/images/thumb-empty.png')">
+                      <span class="b_new">신규</span>
+                      <span class="b_direct">바로신청</span>
+                    </div>
+                    <div class="cont">
+                      <div class="badge">
+                        <span class="b_processing">접수중</span>
+                        <span class="b_waiting">선착순</span>
+                      </div>
+                      <span class="title">타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀</span>
+                      <dl class="info_text">
+                        <dt>교육기간</dt>
+                        <dd>2021. 11. 30 ~ 2021. 11. 30</dd>
+                      </dl>
+                      <dl class="info_text">
+                        <dt>교육대상</dt>
+                        <dd>교육대상</dd>
+                      </dl>
+                      <div class="cont_bot">
+                        <span class="writer">국립중앙박물관</span>
+                        <div class="info">
+                          <span class="view">4,020</span><button type="button" class="like is-active">200</button>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                <!-- </li>
+              </ul> -->
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code>
+            <div class="card_wrap">
+              <!-- <ul>
+                <li> -->
+                  <a href="#;" class="card type02">
+                    <div class="thumb" style="background-image: url(assets/images/thumb-empty.png)">
+                    </div>
+                    <div class="cont">
+                      <div class="badge">
+                        <span class="b_processing">접수중</span>
+                        <span class="b_direct">바로신청</span>
+                      </div>
+                      <span class="title">타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀 타이틀</span>
+                      <dl class="info_text">
+                        <dt>교육기간</dt>
+                        <dd>2021. 11. 30 ~ 2021. 11. 30</dd>
+                      </dl>
+                      <dl class="info_text">
+                        <dt>교육대상</dt>
+                        <dd>교육대상</dd>
+                      </dl>
+                      <div class="cont_bot">
+                        <span class="writer">국립중앙박물관</span>
+                        <div class="info">
+                          <span class="view">4,020</span><button type="button" class="like is-active">200</button>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                <!-- </li>
+              </ul> -->
+            </div>
+          </code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Card</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div class="card_apply">
+              <span class="b_processing">접수중</span>
+              <span class="title">1회차 - 10월 16일(토)</span>
+              <dl>
+                <dt>시간 : </dt>
+                <dd>10:00 ~ 13:30</dd>
+              </dl>
+              <dl>
+                <dt>신청자 : </dt>
+                <dd>10/30</dd>
+              </dl>
+              <a href="#;" class="btn">접수하기</a>
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code>
+            <div class="card_apply">
+              <span class="b_processing">접수중</span>
+              <span class="title">1회차 - 10월 16일(토)</span>
+              <dl>
+                <dt>시간 : </dt>
+                <dd>10:00 ~ 13:30</dd>
+              </dl>
+              <dl>
+                <dt>신청자 : </dt>
+                <dd>10/30</dd>
+              </dl>
+              <a href="#;" class="btn">접수하기</a>
+            </div>
+          </code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Badge</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <span class="b_new">신규</span>
+            <span class="b_processing">접수중</span>
+            <span class="b_direct">바로신청</span>
+            <span class="b_planned">접수예정</span>
+            <span class="b_closed">접수마감</span>
+            <span class="b_end">교육완료</span>
+            <a href="#;" class="b_waiting">선착순</a>
+            <span class="b_activity">활동</span>
+            <span class="b_discussion">토론</span>
+            <span class="b_quiz">퀴즈</span>
+            <span class="b_notice">공지</span>
+            <span class="b_family">가족</span>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code>
+            <span class="b_new">신규</span>
+            <span class="b_processing">접수중</span>
+            <span class="b_direct">바로신청</span>
+            <span class="b_planned">접수예정</span>
+            <span class="b_closed">접수마감</span>
+            <span class="b_end">교육완료</span>
+            <a href="#;" class="b_waiting">선착순</a>
+            <span class="b_activity">활동</span>
+            <span class="b_discussion">토론</span>
+            <span class="b_quiz">퀴즈</span>
+            <span class="b_notice">공지</span>
+            <span class="b_family">가족</span>
+          </code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component: Button -->
+      <div class="ComponentBox">
+
+        <h2 class="ComponentBoxTitle">Button</h2>
+
+        <div class="ComponentBoxView">
+
+          <div class="ComponentBoxView_content">
+            <div style="margin-bottom: 8px;">
+              <!-- custom -->
+              <div style="display: inline-block; width: 141px; height: 40px;">
+                <button type="button" class="button">접수하기</button>
+              </div>
+            </div>
+
+            <!-- btn_regular -->
+            <div style="margin-bottom: 8px;">
+              <button type="button" class="button btn_regular">접수하기</button>
+              <button type="button" class="button btn_regular is-nonactive">접수하기</button>
+              <button type="button" class="button btn_regular btn_borderline_gray">접수하기</button>
+              <button type="button" class="button btn_regular btn_borderline_gray" disabled>접수하기</button>
+              <button type="button" class="button btn_regular btn_ghost">접수하기</button>
+              <button type="button" class="button btn_regular btn_ghost" disabled>접수하기</button>
+            </div>
+            
+            <!-- btn_regular btn_rounded, btn_txt_rounded -->
+            <div style="margin-bottom: 8px;">
+              <button type="button" class="button btn_rounded">접수하기</button>
+              <button type="button" class="button btn_rounded" disabled>접수하기</button>
+              <button type="button" class="button btn_txt_rounded">접수하기</button>
+              <button type="button" class="button btn_txt_rounded" disabled>접수하기</button>
+            </div>
+            
+            <!-- btn_regular btn_search -->
+            <div style="margin-bottom: 8px;">
+              <button type="button" class="button btn_search">검색</button>
+            </div>
+
+            <!-- btn_medium -->
+            <div style="margin-bottom: 8px;">
+              <button type="button" class="button btn_medium btn_borderline">접수하기</button>
+              <button type="button" class="button btn_medium btn_borderline" disabled>접수하기</button>
+            </div>
+
+            <!-- btn_large -->
+            <div style="margin-bottom: 8px;">
+              <button type="button" class="button btn_large">접수하기</button>
+              <button type="button" class="button btn_large" disabled>접수하기</button>
+            </div>
+
+            <!-- btn_xlarge -->
+            <div style="margin-bottom: 8px;">
+              <button type="button" class="button btn_xlarge btn_squared">검색</button>
+              <button type="button" class="button btn_xlarge btn_squared" disabled>검색</button>
+              <button type="button" class="button btn_xlarge">검색</button>
+              <button type="button" class="button btn_xlarge" disabled>검색</button>
+              <button type="button" class="button btn_xlarge btn_borderline">검색</button>
+              <button type="button" class="button btn_xlarge btn_borderline" disabled>검색</button>
+            </div>
+
+            <!-- btn_count -->
+            <div style="margin-bottom: 8px;">
+              <button type="button" class="button btn_count btn_count_plus">
+                <span class="is-blind">증가</span>
+              </button>
+              <button type="button" class="button btn_count btn_count_plus" disabled>
+                <span class="is-blind">증가</span>
+              </button>
+              <button type="button" class="button btn_count btn_count_minus">
+                <span class="is-blind">감소</span>
+              </button>
+              <button type="button" class="button btn_count btn_count_minus" disabled>
+                <span class="is-blind">감소</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component: Button -->
+
+      <!-- component: Popup: drop down -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Popup: drop down</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <!-- .popup_dropdown 부분만 사용 -->
+            <div style="position: relative; height: 300px;">
+              <!-- popup_dropdown -->
+              <!-- show/hide: is-active -->
+              <div class="popup popup_dropdown is-active">
+                <div class="popup_dropdown_inner">
+                  <ul class="popup_dropdown_list">
+                    <li class="popup_dropodwn_item is-active">
+                      <a href="#" class="popup_dropdown_btn">수강내역</a>
+                    </li>
+                    <li class="popup_dropodwn_item">
+                      <a href="#" class="popup_dropdown_btn">나의 좋아요</a>
+                    </li>
+                    <li class="popup_dropodwn_item">
+                      <a href="#" class="popup_dropdown_btn">나의 활동</a>
+                    </li>
+                    <li class="popup_dropodwn_item">
+                      <a href="#" class="popup_dropdown_btn">최근 본 콘텐츠</a>
+                    </li>
+                  </ul>
+                  <ul class="popup_dropdown_list">
+                    <li class="popup_dropodwn_item">
+                      <a href="#" class="popup_dropdown_btn">로그아웃</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- //popup_dropdown -->
+            </div>
+
+            <!-- .popup_dropdown 부분만 사용 -->
+            <div style="position: relative; height: 300px;">
+              <!-- popup_dropdown -->
+              <!-- show/hide: is-active -->
+              <div class="popup_dropdown popup_dropdown_regular is-active">
+                <div class="popup_dropdown_inner">
+                  <ul class="popup_dropdown_list">
+                    <li class="popup_dropodwn_item is-active">
+                      <a href="#" class="popup_dropdown_btn">수강내역</a>
+                    </li>
+                    <li class="popup_dropodwn_item">
+                      <a href="#" class="popup_dropdown_btn">나의 좋아요</a>
+                    </li>
+                    <li class="popup_dropodwn_item">
+                      <a href="#" class="popup_dropdown_btn">나의 활동</a>
+                    </li>
+                    <li class="popup_dropodwn_item">
+                      <a href="#" class="popup_dropdown_btn">최근 본 콘텐츠</a>
+                    </li>
+                  </ul>
+                  <ul class="popup_dropdown_list">
+                    <li class="popup_dropodwn_item">
+                      <a href="#" class="popup_dropdown_btn">로그아웃</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- //popup_dropdown -->
+            </div>
+
+            <!-- .popup_dropdown 부분만 사용 -->
+            <div style="position: relative; height: 200px;">
+              <!-- popup_dropdown -->
+              <!-- show/hide: is-active -->
+              <div class="popup_dropdown popup_dropdown_sm is-active">
+                <div class="popup_dropdown_inner">
+                  <ul class="popup_dropdown_list">
+                    <li class="popup_dropodwn_item is-active">
+                      <a href="#" class="popup_dropdown_btn">수정하기</a>
+                    </li>
+                    <li class="popup_dropodwn_item">
+                      <a href="#" class="popup_dropdown_btn">삭제하기</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- //popup_dropdown -->
+            </div>
+
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component: Popup: drop down -->
+
+      <!-- component: Popup: confirm -->
+      <div class="ComponentBox">
+
+        <h2 class="ComponentBoxTitle">Popup: confirm</h2>
+
+        <div class="ComponentBoxView">
+
+          <div class="ComponentBoxView_content">
+
+            <!-- .popup 부분만 사용 -->
+            <div style="position: relative;">
+              <!-- 팝업 활성화 버튼에 data-popup-target 속성 추가(popup의 data-popup-name과 일치), data-target-id 속성 추가 -->
+              <button type="button" style="display: inline-block; padding: 4px 8px; font-size: 14px; background-color:#eaeaea;" data-popup-target="confirmPopup01" data-target-id="popupId01">open popup</button>
+
+              <!-- popup: (활성화: is-active 클래스 추가, dim: is-dim 클래스 추가) -->
+              <div class="popup popup_confirm popup_dim" data-popup-name="confirmPopup01">
+                <div class="popup_confirm_inner">
+                  <div class="popup_confirm_top">
+                    <strong class="popup_confirm_title">알림예약 확인</strong>
+                  </div>
+                  <div class="popup_confirm_cont">
+                    <p class="popup_confirm_desc">접수기간 하루 전에 예약 알림을 SMS로 받아 보시겠습니까?</p>
+
+                    <div class="popup_confirm_table">
+                      <table class="popup_confirm_tb">
+                        <tr class="popup_confirm_tr">
+                          <th class="popup_confirm_th">이름</th>
+                          <td class="popup_confirm_td">김중박</td>
+                        </tr>
+                        <tr class="popup_confirm_tr">
+                          <th class="popup_confirm_th">휴대폰 번호</th>
+                          <td class="popup_confirm_td">010 - 1234 - 5678</td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                    <div class="popup_confirm_notice">
+                      <a href="#;" class="popup_confirm_notice_tit">예약을 취소하고 싶어요</a>
+                      <p class="popup_confirm_notice_txt">
+                        회원님의 [나의 교육>교육 내역] 메뉴에서 예약예매 내역을 취소하실 수 있습니다.<br>
+                        접수된 후 프로그램 불참 시에는 불이익을 당하실 수 있습니다.<br>
+                        교육취소는 2021. 12. 23 까지만 가능하며, 그 이후에는 교육 담당자에게 전화로 취소하셔야 합니다.</p>
+                    </div>
+                  </div>
+                  <div class="popup_confirm_bottom">
+                    <!-- 팝업 닫기 버튼: popup_close 클래스 추가 -->
+                    <button type="button" class="button btn_regular is-closed popup_close">취소</button>
+                    <button type="button" class="button btn_regular">확인</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component: Popup: confirm -->
+
+      <!-- component: Popup: confirm(input) -->
+      <div class="ComponentBox">
+
+        <h2 class="ComponentBoxTitle">Popup: confirm(input)</h2>
+
+        <div class="ComponentBoxView">
+
+          <div class="ComponentBoxView_content">
+
+            <!-- .popup 부분만 사용 -->
+            <div style="position: relative;">
+              <!-- 팝업 활성화 버튼에 data-popup-target 속성 추가(popup의 data-popup-name과 일치), data-target-id 속성 추가 -->
+              <button type="button" style="display: inline-block; padding: 4px 8px; font-size: 14px; background-color:#eaeaea;" data-popup-target="eventPopup" data-target-id="popupId02">open popup</button>
+
+              <!-- popup: (활성화: is-active 클래스 추가, dim: is-dim 클래스 추가) -->
+              <div class="popup popup_confirm popup_dim" data-popup-name="eventPopup">
+                <div class="popup_confirm_inner">
+                  <div class="popup_confirm_top">
+                    <strong class="popup_confirm_title">경품 응모하기</strong>
+                  </div>
+                  <div class="popup_confirm_cont">
+                    <p class="popup_confirm_desc">경품 당첨 시 수령지 정보</p>
+
+                    <div class="popup_confirm_table">
+                      <table class="popup_confirm_tb">
+                        <tr class="popup_confirm_tr">
+                          <th class="popup_confirm_th">이름</th>
+                          <!-- 인풋이 있는 경우 has-input 클래스 추가 -->
+                          <td class="popup_confirm_td has-input">
+                            <input type="text" placeholder="이름을 입력해 주세요." class="popup_confirm_ip"/>
+                          </td>
+                        </tr>
+                        <tr class="popup_confirm_tr">
+                          <th class="popup_confirm_th">연락처</th>
+                          <td class="popup_confirm_td has-input">
+                            <input type="text" placeholder="연락처를 입력해 주세요. (숫자만)" class="popup_confirm_ip"/>
+                          </td>
+                        </tr>
+                        <tr class="popup_confirm_tr">
+                          <th class="popup_confirm_th">이메일 주소</th>
+                          <td class="popup_confirm_td has-input">
+                            <input type="text" placeholder="이메일 주소를 입력해 주세요." class="popup_confirm_ip"/>
+                          </td>
+                        </tr>
+                        <tr class="popup_confirm_tr">
+                          <th class="popup_confirm_th align-top">자택주소</th>
+                          <td class="popup_confirm_td has-input">
+                            <div class="popup_confirm_combi">
+                              <input type="text" placeholder="우편번호" class="popup_confirm_ip" readonly="readonly"/>
+                              <a href="#;">주소 검색</a>
+                            </div>
+                            <input type="text" placeholder="상세주소" class="popup_confirm_ip" readonly="readonly"/>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                    <div class="popup_confirm_notice">
+                      <p class="popup_confirm_notice_txt">
+                        본 이벤트는 국립중앙박물관에서 주최하는 이벤트입니다.<br>
+                        1. 수집하는 개인정보의 항목 및 수집방법<br>
+                          <span class="is-indent">- 수집 항목 : 이름, 휴대전화 번호, 자택 주소,이메일 주소(경품 발송용),</span><br>
+                          <span class="is-indent">- 수집 방법 : 이벤트 참여시 개인정보 수집ᆞ이용 동의 확인</span><br>
+                        2. 개인정보 수집 및 이용목적<br>
+                          <span class="is-indent">수집하는 개인정보는 당첨자 발표 후 경품 발송을 위해서만 이용됩니다.</span><br>
+                        3. 개인정보 보유 및 이용 기간<br>
+                          <span class="is-indent">개인정보는 「{이벤트}」 당첨자 발표 게시 후에 경품 발송 완료 시까지 보유 및 이용됩니다.</span>
+                    </div>
+                  </div>
+                  <div class="popup_confirm_bottom">
+                    <!-- 팝업 닫기 버튼: popup_close 클래스 추가 -->
+                    <button type="button" class="button btn_regular is-closed popup_close">닫기</button>
+                    <button type="button" class="button btn_regular">확인</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component: Popup: confirm(input) -->
+
+      <!-- component: Popup: share -->
+      <div class="ComponentBox">
+
+        <h2 class="ComponentBoxTitle">Popup: share</h2>
+
+        <div class="ComponentBoxView">
+
+          <div class="ComponentBoxView_content">
+
+            <!-- .popup 부분만 사용 -->
+            <div style="position: relative; height: 400px;">
+              <!-- 팝업 활성화 버튼에 data-popup-target 속성 추가(popup의 data-popup-name과 일치), data-target-id 속성 추가 -->
+              <button type="button" style="display: inline-block; padding: 4px 8px; font-size: 14px; background-color:#eaeaea;" data-popup-target="sharePopup01" data-target-id="popupId03">open popup</button>
+
+              <!-- popup -->
+              <div class="popup popup_share" data-popup-name="sharePopup01">
+                <div class="popup_share_inner">
+                  <strong class="popup_share_title">공유</strong>
+                  <ul class="popup_share_list">
+                    <li class="popup_share_item share-twitter">
+                      <button type="button" class="popup_share_button">트위터</button>
+                    </li>
+                    <li class="popup_share_item share-facebook">
+                      <button type="button" class="popup_share_button">페이스북</button>
+                    </li>
+                    <li class="popup_share_item share-kakao">
+                      <button type="button" class="popup_share_button">카카오톡</button>
+                    </li>
+                  </ul>
+                  <button type="button" class="popup_share_copy">
+                    <span class="popup_share_link">http://abcdefghijklmn.com</span>
+                    <span class="popup_share_copy_txt">복사</span>
+                  </button>
+                  <!-- 팝업 닫기 버튼: popup_close 클래스 추가 -->
+                  <button type="button" class="popup_share_close popup_close">
+                    <span class="is-blind">닫기</span>
+                  </button>
+                </div>
+                <div class="popup_share_toast">
+                  <span class="popup_toast_txt">링크가 복사되었습니다.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component: Popup: share -->
+
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Input - Checkbox</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <span class="checkbox">
+              <input type="checkbox" name="checkbox" id="checkbox1">
+              <label for="checkbox1">
+                <span></span>
+              </label>
+            </span>
+            <br>
+            <span class="checkbox">
+              <input type="checkbox" name="checkbox" id="checkbox2" disabled>
+              <label for="checkbox2">
+                <span></span>
+              </label>
+            </span>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code>
+            
+          </code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Input - Radio</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <span class="radio">
+              <input type="radio" name="radio" id="radio1">
+              <label for="radio1">
+                <span class="radio_text">텍스트</span>
+              </label>
+            </span>
+            <span class="radio">
+              <input type="radio" name="radio" id="radio2" disabled>
+              <label for="radio2">
+                <span class="radio_text">텍스트</span>
+              </label>
+            </span>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code>
+            
+          </code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Input - Radio</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div class="quiz_select">
+              <ul>
+                <li>
+                  <div class="radio">
+                    <input type="radio" name="quiz" id="quiz1">
+                    <label for="quiz1">
+                      <div class="quiz_item">
+                        <span class="num">1</span>
+                        <span>텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 </span>
+                      </div>
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="radio">
+                    <input type="radio" name="quiz" id="quiz2">
+                    <label for="quiz2">
+                      <div class="quiz_item">
+                        <span class="num">2</span>
+                        <span>텍스트 텍스트 텍스트 텍스트 텍스트 텍스트</span>
+                      </div>
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="radio">
+                    <input type="radio" name="quiz" id="quiz3" disabled>
+                    <label for="quiz3">
+                      <div class="quiz_item">
+                        <span class="num">3</span>
+                        <span>텍스트 텍스트 텍스트 텍스트 텍스트 텍스트</span>
+                      </div>
+                    </label>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code>
+            <div class="quiz_select">
+              <ul>
+                <li>
+                  <div class="radio">
+                    <input type="radio" name="quiz" id="quiz4">
+                    <label for="quiz4">
+                      <div class="quiz_item">
+                        <span class="num">1</span>
+                        <span>텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 </span>
+                      </div>
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="radio">
+                    <input type="radio" name="quiz" id="quiz5">
+                    <label for="quiz5">
+                      <div class="quiz_item">
+                        <span class="num">2</span>
+                        <span>텍스트 텍스트 텍스트 텍스트 텍스트 텍스트</span>
+                      </div>
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="radio">
+                    <input type="radio" name="quiz" id="quiz6" disabled>
+                    <label for="quiz6">
+                      <div class="quiz_item">
+                        <span class="num">3</span>
+                        <span>텍스트 텍스트 텍스트 텍스트 텍스트 텍스트</span>
+                      </div>
+                    </label>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Quiz - result</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div class="quiz_select">
+              <ul>
+                <li>
+                  <div class="quiz_item answer">
+                    <span class="num">1</span>
+                    <span>텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="quiz_item wrong">
+                    <span class="num">1</span>
+                    <span>텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code>
+            <div class="quiz_select">
+              <ul>
+                <li>
+                  <div class="quiz_item answer">
+                    <span class="num">1</span>
+                    <span>텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="quiz_item wrong">
+                    <span class="num">1</span>
+                    <span>텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Quiz - toggle</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <button type="button" class="toggle_item">
+              <span class="text">선택완료</span>
+            </button>
+            <button type="button" class="toggle_item" disabled>
+              <span class="text">선택완료</span>
+            </button>
+            <div class="toggle_list">
+              <ul>
+                <li>
+                  <button type="button" class="toggle_item agree">
+                    <span class="text">좋아요</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="toggle_item disagree">
+                    <span class="text">싫어요</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="toggle_item agree" disabled>
+                    <span class="text">좋아요</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="toggle_item disagree" disabled>
+                    <span class="text">싫어요</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="toggle_list char">
+              <ul>
+                <li>
+                  <button type="button" class="toggle_item agree">
+                    <span class="is-blind">O</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="toggle_item disagree">
+                    <span class="is-blind">X</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="toggle_list char">
+              <ul>
+                <li>
+                  <button type="button" class="toggle_item agree" disabled>
+                    <span class="is-blind">O</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="toggle_item disagree" disabled>
+                    <span class="is-blind">X</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code>
+            <button type="button" class="toggle_item">
+              <span class="text">선택완료</span>
+            </button>
+            <button type="button" class="toggle_item" disabled>
+              <span class="text">선택완료</span>
+            </button>
+            <div class="toggle_list">
+              <ul>
+                <li>
+                  <button type="button" class="toggle_item agree">
+                    <span class="text">좋아요</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="toggle_item disagree">
+                    <span class="text">싫어요</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="toggle_item disagree" disabled>
+              <span class="text">싫어요</span>
+            </button>
+            <div class="toggle_list char">
+              <ul>
+                <li>
+                  <button type="button" class="toggle_item agree">
+                    <span class="is-blind">O</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="toggle_item disagree">
+                    <span class="is-blind">X</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="toggle_list char">
+              <ul>
+                <li>
+                  <button type="button" class="toggle_item agree" disabled>
+                    <span class="is-blind">O</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="toggle_item disagree" disabled>
+                    <span class="is-blind">X</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Breadcrumb</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div class="breadcrumb">
+              <a href="#;" class="breadcrumb_item is-home"><span class="is-blind">홈</span></a>
+              <a href="#;" class="breadcrumb_item">탐구해요</a>
+              <a href="#;" class="breadcrumb_item">동영상</a>
+              <a href="#;" class="breadcrumb_item is-present">보물/유물/문화재</a>
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component: tag -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Tag</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <span class="tag">기타</span>
+            <span class="tag tag_em">경품응모</span>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component: quiz -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Card: quiz</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div>
+              <a href="#" class="together_card">
+                <div class="together_card_tag">
+                  <span class="tag">선사에서 고대까지</span>
+                  <span class="tag">기타</span>
+                </div>
+                 <strong class="together_card_title">[OX문제] 고조선은 기원전 3세기경에 부왕 등의 강력한 왕이 등장해 왕위를 세습했다?</strong>
+                 <div class="together_card_inner">
+                   <div class=" toggle_list char">
+                      <ul>
+                        <li>
+                          <span class="toggle_item agree">
+                            <span class="is-blind">O</span>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="toggle_item disagree">
+                            <span class="is-blind">X</span>
+                          </span>
+                        </li>
+                      </ul>
+                   </div>
+                 </div>
+                 <div class="together_card_footer">
+                   <span class="together_card_logo">국립중앙박물관</span>
+                   <div class="together_card_info_list">
+                     <div class="together_card_info">
+                       <span class="together_card_info_tit">등록일</span>
+                       <span class="together_card_info_txt">2020.12.28</span>
+                     </div>
+                     <div class="together_card_info">
+                       <span class="together_card_info_tit">참여자</span>
+                       <span class="together_card_info_txt">210</span>
+                       <span class="together_card_info_txt">명</span>
+                     </div>
+                   </div>
+                 </div>
+              </a>
+            </div>
+
+            <div style="margin-top: 8px;">  
+              <a href="#" class="together_card">
+                <div class="together_card_tag">
+                  <span class="tag tag_em">경품응모</span>
+                  <span class="tag">다른나라 이야기</span>
+                  <span class="tag">기타</span>
+                </div>
+                <strong class="together_card_title">선사시대와 역사시대를 구분하는 기준으로 적절한 것은 무엇일까요?</strong>
+                <div class="together_card_inner">
+                  <div class="quiz_select">
+                    <ul>
+                      <li>
+                        <div class="radio">
+                          <div class="quiz_item">
+                            <span class="num">1</span>
+                            <span>농경과 목축의 시작</span>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="radio">
+                          <div class="quiz_item">
+                            <span class="num">2</span>
+                            <span>계급 발생 유무</span>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="radio">
+                          <div class="quiz_item">
+                            <span class="num">3</span>
+                            <span>문자 사용 유무</span>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="together_card_footer">
+                  <span class="together_card_logo">국립중앙박물관</span>
+                  <div class="together_card_info_list">
+                    <div class="together_card_info m-wide">
+                      <span class="together_card_info_tit">진행기간</span>
+                      <span class="together_card_info_txt">2021.11.15</span>
+                      <span class="together_card_info_txt">~</span>
+                      <span class="together_card_info_txt">2021.12.15</span>
+                    </div>
+                    <div class="together_card_info">
+                      <span class="together_card_info_tit">등록일</span>
+                      <span class="together_card_info_txt">2020.12.28</span>
+                    </div>
+                    <div class="together_card_info">
+                      <span class="together_card_info_tit">참여자</span>
+                      <span class="together_card_info_txt">210</span>
+                      <span class="together_card_info_txt">명</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component: opinion -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Card: quiz</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <a href="#" class="together_card">
+              <strong class="together_card_title">국립중앙박물관에서 2022년에 이집트 관련된 프로그램을 기획하려고 합니다. 온라인으로 제작하는 것이 좋을까요?</strong>
+              <div class="together_card_inner">
+                <div class="together_opinion">
+                  <div class="together_opinion_bar">
+                    <!-- 찬성 퍼센트 값을 width 속성 값, strong 태그에 입력, 100%: is-full 클래스 추가, 0%: is-empty 클래스 추가 -->
+                    <div class="together_opinion_like" style="width: 48%;"></div>
+                    <span class="together_opinion_per"><strong>48</strong>%</span>
+                  </div>
+                  <div class="together_opinion_bar">
+                    <!-- 반대 퍼센트 값을 width 속성 값, strong 태그에 입력, 100%: is-full 클래스 추가, 0%: is-empty 클래스 추가 -->
+                    <div class="together_opinion_dislike" style="width: 52%;"></div>
+                    <span class="together_opinion_per"><strong>52</strong>%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="together_card_footer">
+                <span class="together_card_logo">국립중앙박물관</span>
+                <div class="together_card_info_list">
+                  <div class="together_card_info m-wide">
+                    <span class="together_card_info_tit">진행기간</span>
+                    <span class="together_card_info_txt">2021.11.15</span>
+                    <span class="together_card_info_txt">~</span>
+                    <span class="together_card_info_txt">2021.12.15</span>
+                  </div>
+                  <div class="together_card_info">
+                    <span class="together_card_info_tit">참여자</span>
+                    <span class="together_card_info_txt">210</span>
+                    <span class="together_card_info_txt">명</span>
+                  </div>
+                </div>
+              </div>
+           </a>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+      <!-- component: opinion -->
+      <div class="ComponentBox">
+
+        <!-- component title -->
+        <h2 class="ComponentBoxTitle">Card: event</h2>
+
+        <div class="ComponentBoxView">
+          <!-- code -->
+          <div class="ComponentBoxView_content">
+            <div>
+              <a href="#" class="together_card">
+                <strong class="together_card_title">어린이 박물관 추억의 사진 공모전 개최 (21. 10. 11 ~ 21. 11. 19)</strong>
+                <div class="together_card_inner">
+                  <div class="together_card_event">
+                    <div class="together_card_event_thumb">
+                      <img src="http://via.placeholder.com/180x274/bdbdbd/ffffff" alt="" class="together_card_event_img">
+                    </div>
+                    <p class="together_card_event_desc">
+                      국립중앙박물관 어린이 박물관은 10월 11일(월)부터 11월 19일(금)까지 ‘어린이 박물관 추억의 사진 공모전’을 개최합니다. 국립중앙박물관 어린이 박물관에서 찍은 추억의 사진, 한 장씩 가지고 있으시지요? 그렇다면, 아래 순서대로 신청해보세요!
+                    </p>
+                  </div>
+                </div>
+                <div class="together_card_footer">
+                  <span class="together_card_logo">국립중앙박물관</span>
+                  <div class="together_card_info_list">
+                    <div class="together_card_info">
+                      <span class="together_card_info_tit">등록일</span>
+                      <span class="together_card_info_txt">2020.12.28</span>
+                    </div>
+                    <div class="together_card_info">
+                      <span class="together_card_info_tit">참여자</span>
+                      <span class="together_card_info_txt">210</span>
+                      <span class="together_card_info_txt">명</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div style="margin-top: 8px">
+              <a href="#" class="together_card">
+                <strong class="together_card_title">2021 어린이날 온라인 이벤트 ‘박물관 보물 찾기’ 당첨자 안내</strong>
+                <div class="together_card_inner">
+                  <div class="together_card_event">
+                    <p class="together_card_event_desc">2021 국립중앙박물관 어린이날 온라인 행사 ‘박물관 보물 찾기’ 당첨자 발표 본 이벤트에 지원해주신 모든분들께 감사드리며, 추첨을 통해 선발된 당첨자를 발표합니다.</p>
+                  </div>
+                </div>
+                <div class="together_card_footer">
+                  <span class="together_card_logo">국립중앙박물관</span>
+                  <div class="together_card_info_list">
+                    <div class="together_card_info">
+                      <span class="together_card_info_tit">등록일</span>
+                      <span class="together_card_info_txt">2020.12.28</span>
+                    </div>
+                    <div class="together_card_info">
+                      <span class="together_card_info_tit">참여자</span>
+                      <span class="together_card_info_txt">210</span>
+                      <span class="together_card_info_txt">명</span>
+                    </div>
+                  </div>
+                </div>
+                 
+              </a>
+            </div>
+          </div>
+          <!-- .code -->
+          <div class="ComponentBoxView_footer"><a class="ComponentBoxView_link" href="#;">&lt;/&gt;</a></div>
+        </div>
+        <div class="ComponentBoxCode">
+          <span class="CopyCodeBtn">copy</span>
+          <pre><code></code></pre>
+        </div>
+      </div>
+      <!-- .component -->
+    
+      
+    </div>
+  </div>
+
+
+  <!-- js library -->
+  <script type="text/javascript" src="assets/lib/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="assets/lib/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.0.0/build/highlight.min.js"></script>
+  <!-- js init -->
+  <script>
+    $(function(){
+      $('a').on('click', function (e) {
+        e.preventDefault();
+      });
+
+      $(".ComponentBoxView_link").on("click", function (e) {
+        $(this).closest(".ComponentBox").toggleClass("is-view");
+      });
+
+      $('.CopyCodeBtn').on('click', function(e){
+        var val = $(this).closest('.ComponentBoxCode').find('code').text();
+        var textarea = document.createElement('textarea');
+
+        document.body.appendChild(textarea);
+        textarea.value = val;
+        textarea.select();
+        textarea.setSelectionRange(0, 9999);
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        
+        alert('copied');
+      });
+
+      $('.ComponentBox').each(function(index, item){
+        var $this = $(item);
+        var $code = $this.find('code');
+        var componentCode = ' ' + $this.find('.ComponentBoxView_content').html();
+        componentCode.replace('<', '&lt;').replace('>', '&gt;');
+        $code.text(componentCode);
+      })
+
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+      
+    });
+  </script>
+  <script type="text/javascript" src="assets/js/common.js"></script>
+  <script type="text/javascript" src="../assets/lib/swiper-bundle.min.js"></script>
+  <script type="text/javascript" src="assets/lib/moment.min.js"></script>
+  <script type="text/javascript" src="assets/lib/daterangepicker.js"></script>
+</body>
+</html>
